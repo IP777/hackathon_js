@@ -17,7 +17,6 @@
       href="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css"
     />
   </head>
-
   <body>
     <header class="page-header">
       <div class="nav-container">
@@ -47,25 +46,28 @@
           </ul>
         </nav>
       </div>
-      <nav class="sidebar">
-        <input class="sidebar_watch" type="button" value="Add Watch" />
-        <input class="sidebar_queue" type="button" value="Add Queue" />
-      </nav>
+      <div class="form_wrapper">
+        <form class="search-form" action="" method="get">
+          <input
+            name="s"
+            placeholder="🔍 Write movie name and click Enter"
+            type="search"
+            id="search-form"
+          />
+        </form>
+        <nav class="sidebar">
+          <input class="sidebar_watch" type="button" value="Add Watch" />
+          <input class="sidebar_queue" type="button" value="Add Queue" />
+        </nav>
+      </div>
     </header>
-    <main class="main container" id="container">
-      <form class="search-form" action="" method="get">
-        <input
-          name="s"
-          placeholder="🔍 Write movie name and click Enter"
-          type="search"
-          id="search-form"
-        />
-      </form>
+    <main class="container">
       <section class="card_container">
-        <!-- В этот список рендерим сарточки -->
-        <div class="card_list container"></div>
+        <div class="card_list container">
+          <!-- В этот список рендерим сарточки -->
+        </div>
       </section>
-      <input class="loadMoreBtn" type="button" value="Load More......" />
+      <input class="loadMoreBtn hide" type="button" value="Load More......" />
     </main>
 
     <footer class="footer">

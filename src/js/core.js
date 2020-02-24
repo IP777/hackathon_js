@@ -1,54 +1,48 @@
-import imagesLoaded from 'imagesloaded';
-import lodash from 'lodash';
-import * as basicLightbox from 'basiclightbox';
-import 'basiclightbox/dist/basicLightbox.min.css';
-//---------------------------------------------------
 import imageCardTemplate from '../template/card.hbs';
+import mainTemplate from '../template/main-page.hbs';
+import similarTemplate from '../template/similar-movies.hbs';
+import cardTemplate from '../template/card.hbs';
+import libraryCardTemplate from '../template/library-card.hbs';
+import testTemplate from '../template/test.hbs';
+//-----------------------------------------------------
 import refs from './refs';
-import myPnotify from './pnotifyAlerts';
-import proxyElement from './proxyElemen';
-//---------------------------------------------------
-import reloadInt from './users/reloadInt';
-import api from './api';
-import button from './btn';
+import btn from './btn';
+import render from './api';
+import storage from './localStorageJS';
 
-button.offSidebar();
-button.offLoadBtn();
-button.offCloseBtn();
+render.popularMovie(mainTemplate, refs.cardList);
+
+console.log(location.href);
+document.location.replace('#main');
+btn.offSidebar();
 
 refs.serchForm.addEventListener('submit', e => {
-  button.onLoadBtn();
-  api.currPage = 1;
   e.preventDefault();
-  refs.cardList.innerHTML = '';
   const text = refs.textArea.value;
-  reloadInt.showCardsByquery(text);
+  render.createMarkup(text, mainTemplate, refs.cardList);
+  document.location.replace(`#${text}`);
+  console.log(refs.itemCard);
 });
 
-const movieId = api.getMovieIdFromLink();
+refs.libraryBtn.addEventListener('click', () => {
+  btn.offSearchForm();
+  btn.onSidebar();
 
-if (movieId) {
-  reloadInt.card(movieId);
-} else {
-  reloadInt.mainPage();
-}
-refs.library.addEventListener('click', () => {
-  reloadInt.renderLibrary();
-  button.onSidebar();
-  button.onWatchBtn();
+  refs.cardList.innerHTML = '';
+  document.location.replace('#library');
 });
 
-refs.loadMoreBtn.addEventListener('click', () => {
-  reloadInt.showCardsByquery(refs.textArea.value);
+refs.cardList.addEventListener('click', e => {
+  if (e.target.className === 'grid-img') {
+    btn.offSearchForm();
+    btn.onSidebar();
+    const id = e.target.getAttribute('id');
+    storage.setWatchedMovieIdToLocalStorage(id);
+    render.createMarkupId(id, cardTemplate, refs.cardList);
+  }
 });
 
 refs.sidebarWatchBtn.addEventListener('click', () => {
-  reloadInt.renderLibrary('watched');
-  button.onWatchBtn();
-  button.offQueueBtn();
-});
-refs.sidebarQueueBtn.addEventListener('click', () => {
-  reloadInt.renderLibrary('queue');
-  button.offWatchBtn();
-  button.onQueueBtn();
+  const idArr = storage.getWatchedMovieIdToLocalStorage();
+  idArr.forEach(e => render.createLocalMarkup(e, mainTemplate, refs.cardList));
 });

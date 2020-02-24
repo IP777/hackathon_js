@@ -7,7 +7,7 @@ const refs = {
   textArea: document.querySelector('#search-form'),
   cardContainer: document.querySelector('#container'),
   cardList: document.querySelector('.card_list'),
-  library: document.querySelector('#nav-libery'),
+  libraryBtn: document.querySelector('#nav-libery'),
   sidebar: document.querySelector('.sidebar'),
   sidebarWatchBtn: document.querySelector('.sidebar_watch'),
   sidebarQueueBtn: document.querySelector('.sidebar_queue'),

@@ -44,61 +44,6 @@ body {
   margin: 0 auto;
 }
 
-.main {
-  margin-top: 120px;
-  margin-bottom: 35px;
-}
-/* ----------------------------Main-page.hbs------------------------------------------------------------------- */
-.card_container {
-  margin-bottom: 20px;
-}
-
-.movie-cards {
-  display: flex;
-  flex-wrap: wrap;
-  text-decoration: none;
-  list-style: none;
-  align-content: space-between;
-}
-
-.itemCard {
-  height: 300px;
-  width: 550px;
-  border-radius: 3px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-  position: relative;
-  margin: 8px 8px;
-  background-image: url(http://placehold.it/300x550);
-}
-
-.itemCard img {
-  height: 300px;
-  width: 550px;
-  border-radius: 3px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-}
-
-.itemCard img:hover {
-  transform: scale(1.03);
-}
-
-.itemCard h2 {
-  position: absolute;
-  top: 80%;
-  left: 5%;
-  width: 500px;
-  color: aliceblue;
-  text-shadow: 1px 3px 2px black;
-  opacity: 0.8;
-  font-size: 18px;
-  padding: 10px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
 .loadMoreBtn {
   display: block;
   margin: 0 auto;
@@ -160,4 +105,15 @@ body {
 
 .copyright > a:hover {
   color: white;
+}
+/*----------------------------------*/
+.form_wrapper {
+  display: flex;
+  justify-content: center;
+  background-color: rgba(47, 47, 47, 0.9);
+}
+.card_container {
+  margin-top: 147px;
+  margin-bottom: 40px;
+  display: block;
 }

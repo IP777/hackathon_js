@@ -1,0 +1,43 @@
+/* ----------------------------Main-page.hbs------------------------------------------------------------------- */
+.card_list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.itemCard {
+  height: 300px;
+  width: 550px;
+  border-radius: 3px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  position: relative;
+  margin: 8px 8px;
+}
+
+.itemCard img {
+  height: 300px;
+  width: 550px;
+  border-radius: 3px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.itemCard img:hover {
+  transform: scale(1.03);
+}
+
+.itemCard h2 {
+  position: absolute;
+  top: 80%;
+  left: 5%;
+  width: 500px;
+  color: aliceblue;
+  text-shadow: 1px 3px 2px black;
+  opacity: 0.8;
+  font-size: 18px;
+  padding: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

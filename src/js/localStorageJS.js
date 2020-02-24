@@ -1,15 +1,15 @@
 const movieLocalStorage = {
-  setWatchedMovieIdToLocalStorage(obj) {
+  setWatchedMovieIdToLocalStorage(id) {
     let watchedArray = localStorage.getItem('watched');
     let parsedWatchedArray = watchedArray ? JSON.parse(watchedArray) : [];
 
-    let isContain = parsedWatchedArray.find(movie => movie.id === obj.id);
+    let isContain = parsedWatchedArray.find(movie => movie.id === id);
 
     if (isContain) {
       return;
     }
 
-    parsedWatchedArray.push(obj);
+    parsedWatchedArray.push(id);
 
     localStorage.setItem('watched', JSON.stringify(parsedWatchedArray));
   },

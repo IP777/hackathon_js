@@ -35,6 +35,14 @@ const btn = {
   offQueueBtn() {
     refs.sidebarQueueBtn.classList.remove('active');
   },
+  offSearchForm() {
+    refs.serchForm.classList.add('hide');
+    refs.textArea.classList.add('hide');
+  },
+  onSearchForm() {
+    refs.serchForm.classList.remove('hide');
+    refs.textArea.classList.remove('hide');
+  },
 };
 
 export default btn;

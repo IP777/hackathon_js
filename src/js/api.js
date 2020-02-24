@@ -1,45 +1,79 @@
-import axios from 'axios';
+//https://api.themoviedb.org/3/search/movie?api_key=8b49236e6b82eb62c6f5cab7126e8684&page=1&query=batman&include_adult=false&language=en-US
+//https://api.themoviedb.org/3/movie/11415/similar?api_key=8b49236e6b82eb62c6f5cab7126e8684
+//https://api.themoviedb.org/3/movie/76341?api_key=8b49236e6b82eb62c6f5cab7126e8684&language=en-US
+import refs from './refs';
 
-axios.defaults.baseURL = 'https://api.themoviedb.org/3/';
+const myHttpRequest = {
+  baseUrl: 'https://api.themoviedb.org/3/',
+  API_KEY: '8b49236e6b82eb62c6f5cab7126e8684',
+  request: 'flower',
+  pagination: 1,
 
-const API = '8b49236e6b82eb62c6f5cab7126e8684';
-
-export default {
-  currPage: 1,
-  getPopularFilms() {
-    return axios
-      .get(`/movie/popular/?api_key=${API}`)
-      .then(response => response.data);
-  },
-  getInfoById(id) {
-    id = this.getMovieIdFromLink() ? this.getMovieIdFromLink() : id;
-    return axios
-      .get(`/movie/${id}?api_key=${API}`)
-      .then(response => response.data);
-  },
-  getMoviesByQuery(query) {
-    this.currPage = this.getPageFromLink()
-      ? this.getPageFromLink()
-      : this.currPage;
-    return axios
-      .get(
-        `/search/movie?api_key=${API}&page=${this.currPage}&query=${query}&include_adult=false&language=en-US`,
-      )
+  createMarkup(condition, template, container) {
+    this.request = condition;
+    fetch(
+      `${this.baseUrl}search/movie?api_key=${this.API_KEY}&page=${this.pagination}&query=${this.request}&include_adult=false&language=en-US`,
+    )
       .then(response => {
-        this.currPage += 1;
-        return response.data;
+        //console.log(response);
+        return response.json();
+      })
+      .then(data => {
+        //console.log(data.results);
+        const markup = data.results
+          .map(img_card => template(img_card))
+          .join('');
+        container.innerHTML = markup;
+      })
+      .catch(error => {
+        console.log(`Oh no, erorr ${error}`);
       });
   },
-  getPageFromLink() {
-    return location.hash.split('#page=')[1];
+
+  createMarkupId(id, template, container) {
+    fetch(`${this.baseUrl}movie/${id}?api_key=${this.API_KEY}&language=en-US`)
+      .then(response => {
+        return response.json();
+      })
+      .then(data => {
+        //console.log(data);
+        container.innerHTML = template(data);
+      })
+      .catch(error => {
+        console.log(`Oh no, erorr ${error}`);
+      });
   },
-  getMovieIdFromLink() {
-    return location.hash.split('#id=')[1];
+
+  createLocalMarkup(id, template, container) {
+    refs.cardList.innerHTML = '';
+    fetch(`${this.baseUrl}movie/${id}?api_key=${this.API_KEY}&language=en-US`)
+      .then(response => {
+        return response.json();
+      })
+      .then(data => {
+        //console.log(container);
+        container.insertAdjacentHTML('beforeend', template(data));
+      })
+      .catch(error => {
+        console.log(`Oh no, erorr ${error}`);
+      });
   },
-  getSimilarMovies(id) {
-    id = this.getMovieIdFromLink() ? this.getMovieIdFromLink() : id;
-    return axios
-      .get(`/movie/${id}/similar?api_key=${API}`)
-      .then(response => response.data);
+
+  popularMovie(template, container) {
+    fetch(`${this.baseUrl}movie/popular/?api_key=${this.API_KEY}`)
+      .then(response => {
+        return response.json();
+      })
+      .then(data => {
+        const markup = data.results
+          .map(img_card => template(img_card))
+          .join('');
+        container.innerHTML = markup;
+      })
+      .catch(error => {
+        console.log(`Oh no, erorr ${error}`);
+      });
   },
 };
+
+export default myHttpRequest;

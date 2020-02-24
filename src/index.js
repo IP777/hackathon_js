@@ -5,4 +5,5 @@ import './css/header.css';
 import './css/searchForm.css';
 import './css/fullCard.css';
 import './css/close.css';
+import './css/card.css';
 import './js/core';
