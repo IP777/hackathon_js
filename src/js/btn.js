@@ -49,6 +49,12 @@ const btn = {
   onLoadMoreBtn() {
     refs.loadMoreBtn.classList.remove('hide');
   },
+  offTopBtn() {
+    refs.top_button.classList.add('hide');
+  },
+  onTopBtn() {
+    refs.top_button.classList.remove('hide');
+  },
 };
 
 export default btn;

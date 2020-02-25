@@ -1,26 +1,40 @@
 import mainTemplate from '../template/main-page.hbs';
 import cardTemplate from '../template/card.hbs';
 import watchQWTemplate from '../template/watch-queue-page.hbs';
+import swiperTemplate from '../template/swiper.hbs';
 //-----------------------------------------------------
 import refs from './refs';
 import btn from './btn';
 import render from './api';
 import storage from './localStorageJS';
 import observer from './observer';
+import swiperJS from './mySwiper';
 
 render.popularMovie(mainTemplate, refs.cardList);
 //render.popularMovie(watchQWTemplate, refs.cardList);
-//render.createMarkupId('419704', cardTemplate, refs.cardList);
+//render.createMarkupId('416119', cardTemplate, refs.cardList);
 
 //console.log(location.href);
 document.location.replace('#main');
 btn.offSidebar();
-//btn.offLoadMoreBtn();
 
-refs.homeBtn.addEventListener('click', e => {
+refs.logo.addEventListener('click', e => {
+  e.preventDefault();
   btn.onSearchForm();
   btn.offSidebar();
+  btn.offLoadBtn();
+  btn.onTopBtn();
+
+  refs.textArea.value = '';
+  refs.cardList.innerHTML = '';
+  refs.swiperContainer.innerHTML = '';
+  render.popularMovie(mainTemplate, refs.cardList);
+});
+
+refs.homeBtn.addEventListener('click', e => {
   e.preventDefault();
+  btn.onSearchForm();
+  btn.offSidebar();
   //console.log(storage.getRequest());
   refs.cardList.innerHTML = '';
   const text = storage.getRequest();
@@ -31,6 +45,8 @@ refs.homeBtn.addEventListener('click', e => {
     render.popularMovie(mainTemplate, refs.cardList);
   }
 
+  refs.swiperContainer.innerHTML = '';
+  btn.onTopBtn();
   refs.textArea.value = text;
 });
 
@@ -43,6 +59,7 @@ refs.serchForm.addEventListener('submit', e => {
     observer();
   } else {
     render.popularMovie(mainTemplate, refs.cardList);
+    btn.offLoadBtn();
   }
 
   document.location.replace(`#${text}`);
@@ -50,7 +67,6 @@ refs.serchForm.addEventListener('submit', e => {
 });
 
 const watchFunc = () => {
-  refs.sidebarWatchBtn.style.color = 'white';
   document.location.replace('#watch');
 
   const idArr = storage.getWatchedMovieIdToLocalStorage();
@@ -62,19 +78,21 @@ const watchFunc = () => {
   } else {
     refs.cardList.innerHTML = '';
   }
+  refs.swiperContainer.innerHTML = '';
+  btn.onTopBtn();
   document.location.replace('#watch');
 };
 
 refs.libraryBtn.addEventListener('click', () => {
   btn.offSearchForm();
   btn.onSidebar();
-  refs.sidebarWatchBtn.style.color = 'white';
   watchFunc();
+  refs.swiperContainer.innerHTML = '';
 });
 
 refs.sidebarWatchBtn.addEventListener('click', () => {
-  refs.sidebarQueueBtn.style.color = 'rgb(156, 156, 156)';
   watchFunc();
+  refs.swiperContainer.innerHTML = '';
 });
 
 refs.sidebarQueueBtn.addEventListener('click', () => {
@@ -87,8 +105,9 @@ refs.sidebarQueueBtn.addEventListener('click', () => {
   } else {
     refs.cardList.innerHTML = '';
   }
-  refs.sidebarQueueBtn.style.color = 'white';
-  refs.sidebarWatchBtn.style.color = 'rgb(156, 156, 156)';
+
+  refs.swiperContainer.innerHTML = '';
+  btn.onTopBtn();
   document.location.replace('#queue');
 });
 
@@ -102,6 +121,12 @@ refs.cardList.addEventListener('click', e => {
         e.target.getAttribute('id'),
         cardTemplate,
         refs.cardList,
+      );
+      btn.offTopBtn();
+      render.createSwipeMarkup(
+        e.target.getAttribute('id'),
+        swiperTemplate,
+        refs.swiperContainer,
       );
       break;
     case 'closeBtn':
@@ -121,21 +146,3 @@ refs.cardList.addEventListener('click', e => {
       break;
   }
 });
-
-// console.log(refs.body);
-// refs.top_button.addEventListener(
-//   'click',
-//   () => (document.documentElement.scrollTop = 0),
-// );
-
-//------------------------------------------
-// const movieId = location.hash;
-
-// if (movieId == '#main') {
-//   console.log('main');
-//   //reloadInt.card(movieId);
-// } else {
-//   console.log(location.hash);
-//   //reloadInt.mainPage();
-// }
-//-----------------------------------------

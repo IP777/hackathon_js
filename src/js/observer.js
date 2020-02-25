@@ -13,7 +13,7 @@ function observer(type) {
 
   const onEntry = (entries, observer) => {
     entries.forEach(entry => {
-      console.log('main', iterator);
+      //console.log('main', iterator);
       iterator = iterator + 1;
       const text = storage.getRequest();
       render.createMarkup(text, mainTemplate, refs.cardList, iterator);

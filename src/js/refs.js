@@ -14,6 +14,7 @@ const refs = {
   sidebarQueueBtn: document.querySelector('.sidebar_queue'),
   loadMoreBtn: document.querySelector('.loadMoreBtn'),
   top_button: document.querySelector('#inp_top'),
+  swiperContainer: document.querySelector('.swiper_container'),
 };
 
 export default refs;

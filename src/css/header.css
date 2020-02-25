@@ -22,7 +22,7 @@
   top: 0;
   min-height: 50px;
   background-size: cover;
-  z-index: 1;
+  z-index: 100;
 }
 
 .nav-container {
@@ -42,6 +42,7 @@
 
 .site-logo {
   display: block;
+  cursor: pointer;
   font: 700 20px 'Montserrat';
   color: rgb(66, 65, 65);
   text-decoration: none;

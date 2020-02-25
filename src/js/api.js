@@ -1,9 +1,11 @@
 //https://api.themoviedb.org/3/search/movie?api_key=8b49236e6b82eb62c6f5cab7126e8684&page=1&query=batman&include_adult=false&language=en-US
 //https://api.themoviedb.org/3/movie/11415/similar?api_key=8b49236e6b82eb62c6f5cab7126e8684
 //https://api.themoviedb.org/3/movie/76341?api_key=8b49236e6b82eb62c6f5cab7126e8684&language=en-US
+///https://api.themoviedb.org/3/movie/454626/similar?api_key=8b49236e6b82eb62c6f5cab7126e8684
+
 import refs from './refs';
 import btn from './btn';
-import observer from './observer';
+import swiperJS from './mySwiper';
 
 const myHttpRequest = {
   baseUrl: 'https://api.themoviedb.org/3/',
@@ -69,7 +71,9 @@ const myHttpRequest = {
   },
 
   popularMovie(template, container) {
-    fetch(`${this.baseUrl}movie/popular/?api_key=${this.API_KEY}`)
+    fetch(
+      `https://cors-anywhere.herokuapp.com/${this.baseUrl}movie/popular/?api_key=${this.API_KEY}`,
+    )
       .then(response => {
         return response.json();
       })
@@ -79,6 +83,23 @@ const myHttpRequest = {
           .map(img_card => template(img_card))
           .join('');
         container.innerHTML = markup;
+      })
+      .catch(error => {
+        console.log(`Oh no, erorr ${error}`);
+      });
+  },
+
+  createSwipeMarkup(id, template, container) {
+    fetch(
+      `${this.baseUrl}movie/${id}/similar?api_key=${this.API_KEY}&language=en-US`,
+    )
+      .then(response => {
+        return response.json();
+      })
+      .then(data => {
+        //console.log(container);
+        container.insertAdjacentHTML('beforeend', template(data));
+        swiperJS();
       })
       .catch(error => {
         console.log(`Oh no, erorr ${error}`);
