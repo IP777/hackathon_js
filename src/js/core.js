@@ -40,7 +40,6 @@ refs.homeBtn.addEventListener('click', e => {
   const text = storage.getRequest();
   if (text) {
     render.createMarkup(text, mainTemplate, refs.cardList);
-    observer();
   } else {
     render.popularMovie(mainTemplate, refs.cardList);
   }
@@ -59,7 +58,7 @@ refs.serchForm.addEventListener('submit', e => {
     observer();
   } else {
     render.popularMovie(mainTemplate, refs.cardList);
-    btn.offLoadBtn();
+    observer('off');
   }
 
   document.location.replace(`#${text}`);
@@ -86,6 +85,7 @@ const watchFunc = () => {
 refs.libraryBtn.addEventListener('click', () => {
   btn.offSearchForm();
   btn.onSidebar();
+  btn.offLoadBtn();
   watchFunc();
   refs.swiperContainer.innerHTML = '';
 });
@@ -132,7 +132,8 @@ refs.cardList.addEventListener('click', e => {
     case 'closeBtn':
       refs.cardList.removeChild(e.target.parentElement);
       const id = e.target.parentElement.dataset.movieid;
-      if (location.href != 'http://localhost:4040/#queue') {
+      //console.log(location.hash);
+      if (location.hash != '#queue') {
         storage.deleteWatchedMovieIdFromLocalStorage(id);
       } else {
         storage.deleteQueueMovieIdFromLocalStorage(id);

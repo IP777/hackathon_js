@@ -6,6 +6,7 @@
 import refs from './refs';
 import btn from './btn';
 import swiperJS from './mySwiper';
+import pnotify from './pnotifyAlerts';
 
 const myHttpRequest = {
   baseUrl: 'https://api.themoviedb.org/3/',
@@ -14,6 +15,7 @@ const myHttpRequest = {
   //pagination: 1,
 
   createMarkup(condition, template, container, pagination = 1) {
+    //debugger;
     this.request = condition;
     fetch(
       `${this.baseUrl}search/movie?api_key=${this.API_KEY}&page=${pagination}&query=${this.request}&include_adult=false&language=en-US`,
@@ -23,11 +25,11 @@ const myHttpRequest = {
         return response.json();
       })
       .then(data => {
-        //console.log(data.total_pages);
+        //console.log(data);
         if (data.total_pages > 1) {
-          refs.loadMoreBtn.classList.remove('hide');
-
           btn.onLoadMoreBtn();
+          //pnotify.pError('Упс', `По запросу <${condition}> нечего не найдено`);
+          btn.offLoadBtn();
         }
 
         const markup = data.results
@@ -35,7 +37,6 @@ const myHttpRequest = {
           .join('');
 
         container.insertAdjacentHTML('beforeend', markup);
-        //container.innerHTML = markup;
       })
       .catch(error => {
         console.log(`Oh no, erorr ${error}`);

@@ -13,7 +13,7 @@ function observer(type) {
 
   const onEntry = (entries, observer) => {
     entries.forEach(entry => {
-      //console.log('main', iterator);
+      //console.log(observer);
       iterator = iterator + 1;
       const text = storage.getRequest();
       render.createMarkup(text, mainTemplate, refs.cardList, iterator);
@@ -25,8 +25,9 @@ function observer(type) {
   observer.observe(refs.loadMoreBtn);
 
   if (type === 'off') {
-    observer.unobserve(refs.loadMoreBtn, observer);
+    observer.unobserve(refs.loadMoreBtn);
     btn.offLoadMoreBtn();
+    //console.log(observer);
   }
 }
 export default observer;
