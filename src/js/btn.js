@@ -43,6 +43,12 @@ const btn = {
     refs.serchForm.classList.remove('hide');
     refs.textArea.classList.remove('hide');
   },
+  offLoadMoreBtn() {
+    refs.loadMoreBtn.classList.add('hide');
+  },
+  onLoadMoreBtn() {
+    refs.loadMoreBtn.classList.remove('hide');
+  },
 };
 
 export default btn;

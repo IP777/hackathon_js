@@ -2,28 +2,38 @@
 //https://api.themoviedb.org/3/movie/11415/similar?api_key=8b49236e6b82eb62c6f5cab7126e8684
 //https://api.themoviedb.org/3/movie/76341?api_key=8b49236e6b82eb62c6f5cab7126e8684&language=en-US
 import refs from './refs';
+import btn from './btn';
+import observer from './observer';
 
 const myHttpRequest = {
   baseUrl: 'https://api.themoviedb.org/3/',
   API_KEY: '8b49236e6b82eb62c6f5cab7126e8684',
   request: 'flower',
-  pagination: 1,
+  //pagination: 1,
 
-  createMarkup(condition, template, container) {
+  createMarkup(condition, template, container, pagination = 1) {
     this.request = condition;
     fetch(
-      `${this.baseUrl}search/movie?api_key=${this.API_KEY}&page=${this.pagination}&query=${this.request}&include_adult=false&language=en-US`,
+      `${this.baseUrl}search/movie?api_key=${this.API_KEY}&page=${pagination}&query=${this.request}&include_adult=false&language=en-US`,
     )
       .then(response => {
         //console.log(response);
         return response.json();
       })
       .then(data => {
-        //console.log(data.results);
+        //console.log(data.total_pages);
+        if (data.total_pages > 1) {
+          refs.loadMoreBtn.classList.remove('hide');
+
+          btn.onLoadMoreBtn();
+        }
+
         const markup = data.results
           .map(img_card => template(img_card))
           .join('');
-        container.innerHTML = markup;
+
+        container.insertAdjacentHTML('beforeend', markup);
+        //container.innerHTML = markup;
       })
       .catch(error => {
         console.log(`Oh no, erorr ${error}`);
@@ -45,7 +55,6 @@ const myHttpRequest = {
   },
 
   createLocalMarkup(id, template, container) {
-    refs.cardList.innerHTML = '';
     fetch(`${this.baseUrl}movie/${id}?api_key=${this.API_KEY}&language=en-US`)
       .then(response => {
         return response.json();
@@ -65,6 +74,7 @@ const myHttpRequest = {
         return response.json();
       })
       .then(data => {
+        //console.log(data.results);
         const markup = data.results
           .map(img_card => template(img_card))
           .join('');

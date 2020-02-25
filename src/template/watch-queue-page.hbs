@@ -1,0 +1,13 @@
+<div class="itemCard2" data-movieID="{{id}}">
+    <input class='closeBtn' id='js-closeBtn' type="button" value="X" data-parent="itemCard2">
+    <a href="#id={{id}}" onclick="location.replace('#id={{id}}')">
+        {{#if backdrop_path}}
+        <img id='{{id}}' class="grid-img" src="https://image.tmdb.org/t/p/w500{{backdrop_path}}" alt="{{title}}"
+            data-poster="{{poster_path}}" />
+        {{else}}
+        <img class="grid-img" src="http://placehold.it/500x280">
+        {{/if}}
+
+        <h2>{{title}} ({{release_date}})</h2>
+    </a>
+</div>

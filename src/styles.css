@@ -26,6 +26,10 @@ body {
   min-width: 1200px;
 }
 
+.page-header {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
 .button {
   border: none;
   cursor: pointer;
@@ -63,10 +67,6 @@ body {
   visibility: hidden;
 }
 
-.film-card {
-  margin-bottom: 100px;
-}
-
 .slick-dotted {
   margin-bottom: 80px !important;
 }
@@ -79,7 +79,6 @@ body {
   top: 80%;
   /* left: 50%;
   transform: translateX(-50%); */
-
   width: 500px;
   text-align: center;
   color: aliceblue;
