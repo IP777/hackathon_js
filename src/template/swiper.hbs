@@ -1,0 +1,13 @@
+<!-- Swiper -->
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+        {{#each results}}
+        <div id='{{id}}' class="swiper-slide"
+            style="background-image:url(https://image.tmdb.org/t/p/w500{{backdrop_path}})">
+            <p class="swiperText">{{original_title}}</p>
+        </div>
+        {{/each}}
+    </div>
+    <!-- Add Pagination -->
+    <div class="swiper-pagination"></div>
+</div>

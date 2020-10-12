@@ -35,6 +35,26 @@ const btn = {
   offQueueBtn() {
     refs.sidebarQueueBtn.classList.remove('active');
   },
+  offSearchForm() {
+    refs.serchForm.classList.add('hide');
+    refs.textArea.classList.add('hide');
+  },
+  onSearchForm() {
+    refs.serchForm.classList.remove('hide');
+    refs.textArea.classList.remove('hide');
+  },
+  offLoadMoreBtn() {
+    refs.loadMoreBtn.classList.add('hide');
+  },
+  onLoadMoreBtn() {
+    refs.loadMoreBtn.classList.remove('hide');
+  },
+  offTopBtn() {
+    refs.top_button.classList.add('hide');
+  },
+  onTopBtn() {
+    refs.top_button.classList.remove('hide');
+  },
 };
 
 export default btn;

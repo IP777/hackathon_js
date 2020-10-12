@@ -8,11 +8,14 @@ const refs = {
   textArea: document.querySelector('#search-form'),
   cardContainer: document.querySelector('#container'),
   cardList: document.querySelector('.card_list'),
-  library: document.querySelector('#nav-libery'),
+  libraryBtn: document.querySelector('#nav-libery'),
+  homeBtn: document.querySelector('#nav-home'),
   sidebar: document.querySelector('.sidebar'),
   sidebarWatchBtn: document.querySelector('.sidebar_watch'),
   sidebarQueueBtn: document.querySelector('.sidebar_queue'),
   loadMoreBtn: document.querySelector('.loadMoreBtn'),
+  top_button: document.querySelector('#inp_top'),
+  swiperContainer: document.querySelector('.swiper_container'),
 };
 
 export default refs;

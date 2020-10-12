@@ -1,15 +1,15 @@
 const movieLocalStorage = {
-  setWatchedMovieIdToLocalStorage(obj) {
+  setWatchedMovieIdToLocalStorage(id) {
     let watchedArray = localStorage.getItem('watched');
     let parsedWatchedArray = watchedArray ? JSON.parse(watchedArray) : [];
 
-    let isContain = parsedWatchedArray.find(movie => movie.id === obj.id);
+    let isContain = parsedWatchedArray.find(movie => movie === id);
 
     if (isContain) {
       return;
     }
 
-    parsedWatchedArray.push(obj);
+    parsedWatchedArray.push(id);
 
     localStorage.setItem('watched', JSON.stringify(parsedWatchedArray));
   },
@@ -26,7 +26,7 @@ const movieLocalStorage = {
 
     let parsedWatchedArray = watchedArray ? JSON.parse(watchedArray) : [];
 
-    let isContain = parsedWatchedArray.find(movie => movie.id === Number(id));
+    let isContain = parsedWatchedArray.find(movie => movie === id);
 
     if (isContain) {
       const positionId = parsedWatchedArray.indexOf(isContain);
@@ -37,17 +37,17 @@ const movieLocalStorage = {
     localStorage.setItem('watched', JSON.stringify(parsedWatchedArray));
   },
 
-  setQueueMovieIdToLocalStorage(obj) {
+  setQueueMovieIdToLocalStorage(id) {
     let queueArray = localStorage.getItem('queue');
     let parsedQueueArray = queueArray ? JSON.parse(queueArray) : [];
 
-    let isContain = parsedQueueArray.find(movie => movie.id === obj.id);
+    let isContain = parsedQueueArray.find(movie => movie === id);
 
     if (isContain) {
       return;
     }
 
-    parsedQueueArray.push(obj);
+    parsedQueueArray.push(id);
 
     localStorage.setItem('queue', JSON.stringify(parsedQueueArray));
   },
@@ -63,8 +63,8 @@ const movieLocalStorage = {
     let queueArray = localStorage.getItem('queue');
     let parsedQueueArray = queueArray ? JSON.parse(queueArray) : [];
 
-    let isContain = parsedQueueArray.find(movie => movie.id === Number(id));
-    console.log(isContain);
+    let isContain = parsedQueueArray.find(movie => movie === id);
+    //console.log(parsedQueueArray, isContain);
     if (isContain) {
       const positionId = parsedQueueArray.indexOf(isContain);
 
@@ -73,11 +73,16 @@ const movieLocalStorage = {
 
     localStorage.setItem('queue', JSON.stringify(parsedQueueArray));
   },
-  // deleteObjById(id, type){
-  //   if(type='watched'){
 
-  //   }
-  // }
+  setRequest(text) {
+    localStorage.setItem('request', JSON.stringify(text));
+  },
+  getRequest() {
+    const savedArrayOfId = localStorage.getItem('request');
+    const parsedArrayOfid = JSON.parse(savedArrayOfId);
+
+    return parsedArrayOfid;
+  },
 };
 
 export default movieLocalStorage;
