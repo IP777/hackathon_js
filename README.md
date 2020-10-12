@@ -1,4 +1,4 @@
-## [Ссылка на страницу после деплоя](https://film-searcher.netlify.app)https://film-searcher.netlify.app
+## Ссылк на страницу - https://film-searcher.netlify.app -
 
 ## Использование
 
