@@ -1,14 +1,11 @@
 import Swiper from 'swiper';
-import css from 'swiper/css/swiper.min.css';
 //-------------------------------------------------------------
 import cardTemplate from '../template/card.hbs';
-import swiperTemplate from '../template/swiper.hbs';
 //-------------------------------------------------------------
 import render from './api';
 import refs from './refs';
-import btn from './btn';
 
-//https://swiperjs.com/api/#methods
+//https://swiperjs.com/
 
 function swiperJS() {
   const swiper = new Swiper('.swiper-container', {
@@ -26,13 +23,17 @@ function swiperJS() {
     },
     pagination: {
       el: '.swiper-pagination',
+      type: 'progressbar',
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
     },
   });
 
-  swiper.on('click', function(e) {
+  swiper.on('click', function (e) {
     const id = e.originalTarget.getAttribute('id');
     render.createMarkupId(id, cardTemplate, refs.cardList);
-    //render.createSwipeMarkup(id, swiperTemplate, refs.swiperContainer);
   });
 }
 

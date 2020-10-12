@@ -8,7 +8,7 @@ import btn from './btn';
 import render from './api';
 import storage from './localStorageJS';
 import observer from './observer';
-import swiperJS from './mySwiper';
+//import swiperJS from './mySwiper';
 
 render.popularMovie(mainTemplate, refs.cardList);
 //render.popularMovie(watchQWTemplate, refs.cardList);

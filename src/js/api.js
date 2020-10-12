@@ -1,11 +1,5 @@
-import axios from 'axios';
-import refs from './refs';
-
-
-import refs from './refs';
 import btn from './btn';
 import swiperJS from './mySwiper';
-import pnotify from './pnotifyAlerts';
 
 const myHttpRequest = {
   baseUrl: 'https://api.themoviedb.org/3/',
@@ -14,17 +8,14 @@ const myHttpRequest = {
   //pagination: 1,
 
   createMarkup(condition, template, container, pagination = 1) {
-    //debugger;
     this.request = condition;
     fetch(
       `${this.baseUrl}search/movie?api_key=${this.API_KEY}&page=${pagination}&query=${this.request}&include_adult=false&language=en-US`,
     )
       .then(response => {
-        //console.log(response);
         return response.json();
       })
       .then(data => {
-        //console.log(data);
         if (data.total_pages > 1) {
           btn.onLoadMoreBtn();
           //pnotify.pError('Упс', `По запросу <${condition}> нечего не найдено`);
@@ -48,7 +39,6 @@ const myHttpRequest = {
         return response.json();
       })
       .then(data => {
-        //console.log(data);
         container.innerHTML = template(data);
       })
       .catch(error => {
@@ -62,7 +52,6 @@ const myHttpRequest = {
         return response.json();
       })
       .then(data => {
-        //console.log(container);
         container.insertAdjacentHTML('beforeend', template(data));
       })
       .catch(error => {
@@ -78,7 +67,6 @@ const myHttpRequest = {
         return response.json();
       })
       .then(data => {
-        //console.log(data.results);
         const markup = data.results
           .map(img_card => template(img_card))
           .join('');
@@ -97,9 +85,10 @@ const myHttpRequest = {
         return response.json();
       })
       .then(data => {
-        //console.log(container);
-        container.insertAdjacentHTML('beforeend', template(data));
-        swiperJS();
+        if (data.total_results) {
+          container.insertAdjacentHTML('beforeend', template(data));
+          swiperJS();
+        }
       })
       .catch(error => {
         console.log(`Oh no, erorr ${error}`);
