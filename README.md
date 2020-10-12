@@ -45,3 +45,4 @@
 - `npm install imagesloaded`
 - [lodash](https://lodash.com/)
 - `npm i --save lodash`
+- [SwiperJs](https://swiperjs.com/)
