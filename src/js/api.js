@@ -1,4 +1,5 @@
 import axios from 'axios';
+import refs from './refs';
 
 axios.defaults.baseURL = 'https://api.themoviedb.org/3/';
 
