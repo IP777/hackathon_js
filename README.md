@@ -1,7 +1,4 @@
-# Webpack starter kit
-
-[Живая страница](https://github.com/IP777/hackathon_js/) после деплоя через
-`npm run deploy`.
+## https://film-searcher.netlify.app
 
 ## Использование
 

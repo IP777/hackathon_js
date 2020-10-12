@@ -1,0 +1,54 @@
+.itemCard2 {
+  height: 300px;
+  width: 550px;
+  border-radius: 3px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  position: relative;
+  margin: 8px 8px;
+}
+
+.itemCard2 img {
+  height: 300px;
+  width: 550px;
+  border-radius: 3px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* .itemCard2 img:hover {
+  transform: rotate(30deg);
+} */
+
+.itemCard2 h2 {
+  position: absolute;
+  top: 80%;
+  left: 5%;
+  width: 500px;
+  color: aliceblue;
+  text-shadow: 1px 3px 2px black;
+  opacity: 0.8;
+  font-size: 18px;
+  padding: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.closeBtn {
+  display: none;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 23px;
+  height: 23px;
+  background-color: rgba(255, 255, 255);
+  border: 1px solid rgb(0, 0, 0);
+  border-radius: 10px;
+  opacity: 0.5;
+  box-shadow: 1px 1px 1px black;
+}
+
+.itemCard2:hover > .closeBtn {
+  display: block;
+}

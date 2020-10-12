@@ -1,10 +1,10 @@
-import refs from '../refs';
+import refs from '../../src/js/refs';
 import cardTemplate from '../../template/card.hbs';
 import mainPageTemplate from '../../template/main-page.hbs';
 import similarMoviesTemplate from '../../template/similar-movies.hbs';
-import api from '../api';
-import localStorageJs from '../localStorageJS';
-import button from '../btn';
+import api from '../../src/js/api';
+import localStorageJs from '../../src/js/localStorageJS';
+import button from '../../src/js/btn';
 
 const user1 = {
   mainPage() {

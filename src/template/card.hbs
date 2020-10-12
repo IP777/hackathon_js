@@ -1,5 +1,9 @@
 <div class="film-card container">
+    {{#if backdrop_path}}
     <img src="https://image.tmdb.org/t/p/w500{{poster_path}}" alt="filmImg" class="img-film-card">
+    {{else}}
+    <img src="http://placehold.it/350x500" alt="filmImg" class="img-film-card">
+    {{/if}}
 
     <div class="movieInfo">
         <h2>{{title}}</h2>

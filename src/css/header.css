@@ -22,12 +22,11 @@
   top: 0;
   min-height: 50px;
   background-size: cover;
-  z-index: 1;
+  z-index: 100;
 }
 
 .nav-container {
   background-color: rgba(41, 151, 151, 0.8);
-  border-radius: 15px 15px 0 0;
 }
 
 .page-nav {
@@ -43,6 +42,7 @@
 
 .site-logo {
   display: block;
+  cursor: pointer;
   font: 700 20px 'Montserrat';
   color: rgb(66, 65, 65);
   text-decoration: none;

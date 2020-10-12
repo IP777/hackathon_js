@@ -1,20 +1,18 @@
 .sidebar {
-  display: flex;
-  justify-content: center;
   text-align: center;
   color: #000000;
   height: 50px;
-  background-color: rgb(199, 199, 199, 0.8);
-  border-radius: 0 0 15px 15px;
 }
 
 .sidebar_watch,
 .sidebar_queue {
-  display: block;
+  margin-top: 15px;
+  display: inline-block;
   border-radius: 0;
   box-shadow: 0 0 black;
   border: 0;
   background-color: rgba(199, 199, 199, 0);
+  color: rgb(156, 156, 156);
   font-family: 'Roboto', Arial, sans-serif;
   font-weight: 400;
   font-size: 16px;
