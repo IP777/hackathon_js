@@ -1,7 +1,6 @@
-//https://api.themoviedb.org/3/search/movie?api_key=8b49236e6b82eb62c6f5cab7126e8684&page=1&query=batman&include_adult=false&language=en-US
-//https://api.themoviedb.org/3/movie/11415/similar?api_key=8b49236e6b82eb62c6f5cab7126e8684
-//https://api.themoviedb.org/3/movie/76341?api_key=8b49236e6b82eb62c6f5cab7126e8684&language=en-US
-///https://api.themoviedb.org/3/movie/454626/similar?api_key=8b49236e6b82eb62c6f5cab7126e8684
+import axios from 'axios';
+import refs from './refs';
+
 
 import refs from './refs';
 import btn from './btn';
